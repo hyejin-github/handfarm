@@ -441,42 +441,6 @@
 </div>
 
 
-###  3. 담배 분쇄
-
-![grind](https://user-images.githubusercontent.com/62362910/185403679-e9990766-4514-4ee4-9586-2405be27c395.gif)
-
-- 판별부에서 담배로 인식이 된다면 곧바로 분쇄하게 됩니다. 분쇄된 담배는 일반 쓰레기와 분리되어 수거됩니다.
-
-###  4. 처리 후 사용 정보 DB 송신
-
-![get](https://user-images.githubusercontent.com/62362910/185400157-af7e391a-c9b0-4066-8b6e-0d41cc67b7c9.png)
-
-- 판별이 끝난 후 담배 인것이 확인되면 이를 DB측으로 송신합니다. 
-- DB에서는 이를 포인트로 적립시킵니다.
-
-
-###  5. 기기정보 업로드
-
-<img src="https://user-images.githubusercontent.com/62362910/185400142-e22f8ffc-08c9-417b-8cef-46a3e9dc1f27.png" width="629" height="416"/>
-
-- 1시간 마다 기기의 정보를 업로드합니다. 
-- 위의 이미지 처럼 DB의 Table에 해당되는 JSON 형식으로 POST요청을 보냅니다. 기기 ID, 사용자 이름, 기기 상태, 쓰레기 통 용량, 배터리 등의 정보를 관리자 측으로 송신합니다.
-
-
-</br>
-
-</br>
-
-
-
-<div id="5"></div>
-
-## 🎥 UCC 보러가기
-
-[보러가기](https://www.youtube.com/watch?v=OL8DLIg1nm4)
-
-
-
 </br>
 
 </br>
