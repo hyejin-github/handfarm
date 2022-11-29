@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://handfarm.co.kr/handfarm?serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8&amp
+    username: farmer
+    password: handfarm1!
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: false
+  redis:
+    host: handfarm.co.kr
+    port: 6379
+    password: handfarm
+
+logging:
+  level:
+    org:
+      springframework:
+        web: debug
+    sql: debug
+server:
+  port: 8081
+
+  logging:
+    file:
+      name: ${user.dir}/log/test.log  # 로깅 파일 위치이다.
+      max-history: 7 # 로그 파일 삭제 주기이다. 7일 이후 로그는 삭제한다.
+      max-size: 10MB  # 로그 파일 하나당 최대 파일 사이즈이다.
+    level: # 각 package 별로 로깅 레벨을 지정할 수 있다.
+      com.project.study: error
+      com.project.study.controller: debug

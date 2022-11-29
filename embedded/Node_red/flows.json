@@ -1,0 +1,360 @@
+[
+    {
+        "id": "c85adf76be215e0a",
+        "type": "tab",
+        "label": "플로우 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "8818715dca7b58ab",
+        "type": "mqtt in",
+        "z": "c85adf76be215e0a",
+        "name": "",
+        "topic": "ssafy/c101/temp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "55355401947d3648",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 220,
+        "wires": [
+            [
+                "e249fd57a0355575",
+                "9ed8cf18377af447",
+                "7245b1fff477208f"
+            ]
+        ]
+    },
+    {
+        "id": "e249fd57a0355575",
+        "type": "debug",
+        "z": "c85adf76be215e0a",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9ed8cf18377af447",
+        "type": "mqtt out",
+        "z": "c85adf76be215e0a",
+        "name": "",
+        "topic": "ssafy/c101/temp",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8aca2dc0690dc069",
+        "x": 860,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6d618e0bfa7a6b27",
+        "type": "function",
+        "z": "c85adf76be215e0a",
+        "name": "Mysql Select Query",
+        "func": "msg.topic = \"SELECT * FROM test.sensor;\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 290,
+        "y": 500,
+        "wires": [
+            [
+                "fb45668fc9f13472"
+            ]
+        ]
+    },
+    {
+        "id": "fb45668fc9f13472",
+        "type": "mysql",
+        "z": "c85adf76be215e0a",
+        "mydb": "97a5e5c83d20d0d1",
+        "name": "",
+        "x": 450,
+        "y": 500,
+        "wires": [
+            [
+                "1ac68c0a7ad2294f"
+            ]
+        ]
+    },
+    {
+        "id": "1ac68c0a7ad2294f",
+        "type": "debug",
+        "z": "c85adf76be215e0a",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "1279cdbce09bac72",
+        "type": "inject",
+        "z": "c85adf76be215e0a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 500,
+        "wires": [
+            [
+                "6d618e0bfa7a6b27"
+            ]
+        ]
+    },
+    {
+        "id": "ca242859590d2b37",
+        "type": "mqtt in",
+        "z": "c85adf76be215e0a",
+        "name": "",
+        "topic": "ssafy/c101/temp",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "55355401947d3648",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 200,
+        "y": 740,
+        "wires": [
+            [
+                "536c4aa3d5219ec3"
+            ]
+        ]
+    },
+    {
+        "id": "536c4aa3d5219ec3",
+        "type": "function",
+        "z": "c85adf76be215e0a",
+        "name": "Mysql Insert Query",
+        "func": "let val = msg.payload;\nmsg.topic = `INSERT INTO test.sensor (temp) VALUES ( ${val} );`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 740,
+        "wires": [
+            [
+                "ed48b6b80ac0c513"
+            ]
+        ]
+    },
+    {
+        "id": "ed48b6b80ac0c513",
+        "type": "mysql",
+        "z": "c85adf76be215e0a",
+        "mydb": "97a5e5c83d20d0d1",
+        "name": "",
+        "x": 650,
+        "y": 740,
+        "wires": [
+            [
+                "e5e8f74b81e62ae2"
+            ]
+        ]
+    },
+    {
+        "id": "e5e8f74b81e62ae2",
+        "type": "debug",
+        "z": "c85adf76be215e0a",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 800,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "7245b1fff477208f",
+        "type": "ui_chart",
+        "z": "c85adf76be215e0a",
+        "name": "",
+        "group": "0f82875e0dea2d86",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-20",
+        "ymax": "35",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1050,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "55355401947d3648",
+        "type": "mqtt-broker",
+        "name": "EC2",
+        "broker": "54.180.201.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "8aca2dc0690dc069",
+        "type": "mqtt-broker",
+        "name": "IOT Core",
+        "broker": "a1kcyv6wcyjhnj-ats.iot.ap-northeast-2.amazonaws.com",
+        "port": "8883",
+        "tls": "1499dbf316b53e30",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "97a5e5c83d20d0d1",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "3.38.95.20",
+        "port": "3306",
+        "db": "test",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "0f82875e0dea2d86",
+        "type": "ui_group",
+        "name": "Test",
+        "tab": "a9eba6d40348a7f4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "1499dbf316b53e30",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "569ab2706053de3438ebe189ac38e8f78c65f49ccca2c75077fb897e58363f31-certificate.pem.crt",
+        "keyname": "569ab2706053de3438ebe189ac38e8f78c65f49ccca2c75077fb897e58363f31-private.pem.key",
+        "caname": "AmazonRootCA1.pem",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "a9eba6d40348a7f4",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

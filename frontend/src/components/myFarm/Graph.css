@@ -1,0 +1,23 @@
+.on-selected {
+  color: #2160CA
+}
+
+.off-selected {
+  color: white
+}
+
+.blur-effect {
+  filter: blur(10px);
+  -webkit-filter: blur(3px);
+}
+
+.updown {
+  position: fixed;
+  border: 1px solid black;
+  width: 0.1px;
+  height: 90px;
+}
+
+.text-black {
+  color: black
+}
